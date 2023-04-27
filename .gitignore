@@ -1,0 +1,78 @@
+# compiled output
+/dist
+/admin/dist
+/tmp
+/docs
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# keys
+/keys
+
+# dependencies
+**/node_modules
+
+#aws stuff
+/.ebextensions
+
+# js generated
+**/lib
+/lib
+/etc
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+._.DS_Store
+Thumbs.db
+/deploy.sh
+
+# package-lock.json
+/testing/results/
+/e2e/results/
+/server/coverage
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# env
+.env
+.env.*
+.*.env
+
+# Nuxt build
+.nuxt
