@@ -2,6 +2,10 @@ import {isEmpty, isNotEmpty, isValidEmail, isValidPhone} from "./helpers";
 
 export type Rule<T> = (v: T) => true | string
 
+export function chainRules<T>(rules:Rule<T>[], v: T): true | string {
+    const errorMessage = rules.map(r => r(v)).find(result => result !== true)
+    return isEmpty(errorMessage) ? true : errorMessage
+}
 
 /**
  * Required
