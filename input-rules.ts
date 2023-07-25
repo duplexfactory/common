@@ -23,3 +23,38 @@ export const requiredCheckboxRule: Rule<boolean> = (v: boolean) => v || '請勾�
 
 export const formatEmailRule: Rule<string> = (v: string) => isValidEmail(v) || '請以正確格式填寫電郵'
 export const formatPhoneRule: Rule<string> = (v: string) => isValidPhone(v) || '請以正確格式填寫電話'
+
+/**
+ * Form
+ */
+
+export class Form<T> {
+    values: T
+    rules: Partial<{[P in keyof T]: Rule<T[P]>[]}> = {}
+    errors: Partial<{[P in keyof T]: true | string}> = {}
+
+    constructor(param: { values: T; rules: Partial<{[P in keyof T]: Rule<any>[]}>; errors: Partial<{[P in keyof T]: string}> }) {
+        this.values = param.values
+        this.rules = param.rules
+        this.errors = param.errors
+        return this
+    }
+
+    validateFields(fields: (keyof T)[]) {
+        const errors = fields.reduce((errors, field) => {
+            const v = this.rules[field]
+            if (!isEmpty(v))
+                errors[field] = chainRules(v, this.values[field])
+            return errors
+        }, {} as Partial<{[P in keyof T]: true | string}>)
+        // for (const field of fields) {
+        //     Vue.set(this.errors, String(field), errors[field])
+        // }
+        this.errors = errors
+        return Object.values(this.errors).every(err => !err)
+    }
+
+    validate() {
+        return this.validateFields(Object.keys(this.rules) as (keyof T)[])
+    }
+}
