@@ -1,8 +1,7 @@
 import fetch from "node-fetch";
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-
-const csv = require('csvtojson')
+import csv from 'csvtojson';
 
 function setDeepValue(obj: any, value: any, p: string) {
     let i;
@@ -32,10 +31,10 @@ const main = async () => {
 
             },
             () => {
-                writeFileSync(join(__dirname, '../../lang/en-US.ts'), 'export default ' + JSON.stringify(enResult), {
+                writeFileSync(join(__dirname, '../dist/lang/en-US.ts'), 'export default ' + JSON.stringify(enResult), {
                     flag: 'w',
                 });
-                writeFileSync(join(__dirname, '../../lang/zh-Hant.ts'), 'export default ' + JSON.stringify(zhResult), {
+                writeFileSync(join(__dirname, '../dist/lang/zh-Hant.ts'), 'export default ' + JSON.stringify(zhResult), {
                     flag: 'w',
                 });
 
