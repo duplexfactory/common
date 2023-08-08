@@ -1,3 +1,5 @@
+import {CredentialData} from "@models/credential-data";
+
 export {}
 
 declare global {
@@ -27,4 +29,8 @@ declare global {
         sumObj(obj: NodeJS.Dict<number>): number;
     }
 
+    interface Storage {
+        getCredentialData(credentialKey: string): CredentialData | null;
+        setCredentialData(credentialKey: string, data: CredentialData);
+    }
 }
