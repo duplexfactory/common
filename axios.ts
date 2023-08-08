@@ -11,7 +11,7 @@ declare module "axios" {
 export const configAxiosAutoRefreshTokenInterceptor = (
     axios: AxiosStatic,
     credentialKey: string,
-    refreshTokenFunction: () => Promise<{
+    refreshTokenFunction: (refreshToken: string) => Promise<{
         accessExpiresIn: number,
         accessToken: string,
     }>) => {
@@ -45,7 +45,7 @@ export const configAxiosAutoRefreshTokenInterceptor = (
                 const data: {
                     accessExpiresIn: number,
                     accessToken: string,
-                } = await refreshTokenFunction();
+                } = await refreshTokenFunction(refreshToken);
                 localStorage.setCredentialData(credentialKey, {
                     accessExpiresAt: dayjs().add(data.accessExpiresIn, "seconds").valueOf(),
                     accessToken: data.accessToken,
