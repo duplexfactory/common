@@ -29,6 +29,10 @@ declare global {
         sumObj(obj: NodeJS.Dict<number>): number;
     }
 
+    interface ObjectConstructor {
+        assignExists<T, U>(target: T, source: U): T;
+    }
+
     interface Storage {
         getCredentialData(credentialKey: string): CredentialData | null;
         setCredentialData(credentialKey: string, data: CredentialData);

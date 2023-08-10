@@ -86,3 +86,14 @@ if (!Storage.prototype.setCredentialData) {
         localStorage.setItem("credential", CryptoJS.AES.encrypt(credentialString, credentialKey).toString());
     };
 }
+
+/**
+ * Object
+ */
+
+if (!Object.assignExists) {
+    Object.assignExists = function <T extends Record<any, any>, U extends Record<any, any>>(target: T, source: U): T {
+        Object.keys(source).filter(key => key in target).forEach(key => Object.assign(target, {[key]: source[key]}));
+        return target;
+    };
+}
