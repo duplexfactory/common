@@ -21,8 +21,8 @@ export const requiredCheckboxRule: Rule<boolean> = (v: boolean) => v || '請勾�
  * Format
  */
 
-export const formatEmailRule: Rule<string> = (v: string) => isValidEmail(v) || '請以正確格式填寫電郵'
-export const formatPhoneRule: Rule<string> = (v: string) => isValidPhone(v) || '請以正確格式填寫電話'
+export const formatEmailRule: Rule<string> = (v: string) => !v || isValidEmail(v) || '請以正確格式填寫電郵'
+export const formatPhoneRule: Rule<string> = (v: string) => !v || isValidPhone(v) || '請以正確格式填寫電話'
 
 /**
  * Form
