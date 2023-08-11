@@ -19,7 +19,7 @@ const zhResult = {}
 
 const main = async () => {
     // for google sheet: https://docs.google.com/spreadsheets/d/{{ID}}/gviz/tq?tqx=out:csv&sheet={{sheet_name}}
-    const spreadSheetUrl = ""
+    const spreadSheetUrl = process.argv[2] || process.env.SHEET_URL || ""
     const res = await fetch(spreadSheetUrl)
     await csv()
         .fromStream(res.body)
