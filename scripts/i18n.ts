@@ -18,8 +18,9 @@ const enResult = {}
 const zhResult = {}
 
 const main = async () => {
+    // for google sheet: https://docs.google.com/spreadsheets/d/{{ID}}/gviz/tq?tqx=out:csv&sheet={{sheet_name}}
     const spreadSheetUrl = ""
-    const res = await fetch("")
+    const res = await fetch(spreadSheetUrl)
     await csv()
         .fromStream(res.body)
         .subscribe(
