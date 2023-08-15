@@ -31,6 +31,7 @@ declare global {
 
     interface ObjectConstructor {
         assignExists<T, U>(target: T, source: U): T;
+        trimLeaves(obj: any, values: any[]);
     }
 
     interface Storage {

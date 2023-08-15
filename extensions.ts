@@ -97,3 +97,16 @@ if (!Object.assignExists) {
         return target;
     };
 }
+
+if (!Object.trimLeaves) {
+    Object.trimLeaves = function trimLeaves(obj: any, values: any[]) {
+        for (const o in obj) {
+            if (typeof obj[o] === 'object')
+                trimLeaves(obj[o], values);
+            if (values.find((v: any) => JSON.stringify(v) === JSON.stringify(obj[o])))
+                delete obj[o];
+        }
+        return obj
+    }
+}
+
