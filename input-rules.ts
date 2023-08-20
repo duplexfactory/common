@@ -4,7 +4,7 @@ export type Rule<T> = (v: T) => true | string
 
 export function chainRules<T>(rules: Rule<T>[], v: T): true | string {
     const errorMessage = rules.map(r => r(v)).find(result => result !== true);
-    return isEmpty(errorMessage) ? true : errorMessage;
+    return isEmpty(errorMessage) ? "" : errorMessage;
 }
 
 /**
@@ -54,7 +54,7 @@ export class Form<T> {
         //     Vue.set(this.errors, String(field), errors[field])
         // }
         this.errors = errors;
-        return Object.values(this.errors).every(err => err === true);
+        return Object.values(this.errors).every(err => !err);
     }
 
     validate() {
