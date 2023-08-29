@@ -24,6 +24,9 @@ export const requiredCheckboxRule: Rule<boolean> = (v: boolean) => v || "請勾�
 export const formatEmailRule: Rule<string> = (v: string) => !v || isValidEmail(v) || "請以正確格式填寫電郵";
 export const formatPhoneRule: Rule<string> = (v: string) => !v || isValidPhone(v) || "請以正確格式填寫電話";
 
+export const lengthRule: (l: number) => Rule<string> = (l) => (v: string) => !v || v.length >= l || `長度最少為${l}`;
+export const equalRule: (val: any, field: string) => Rule<any> = (val, field) => (v: any) => !v || v === val || `與${field}不相同`;
+
 /**
  * Form
  */
