@@ -32,10 +32,10 @@ const main = async () => {
 
             },
             () => {
-                writeFileSync(join(__dirname, '../dist/lang/en-US.ts'), 'export default ' + JSON.stringify(enResult), {
+                writeFileSync(join(__dirname, '../dist/lang/en-US.ts'), 'export default ' + JSON.stringify(enResult, null, 4), {
                     flag: 'w',
                 });
-                writeFileSync(join(__dirname, '../dist/lang/zh-Hant.ts'), 'export default ' + JSON.stringify(zhResult), {
+                writeFileSync(join(__dirname, '../dist/lang/zh-Hant.ts'), 'export default ' + JSON.stringify(zhResult, null, 4), {
                     flag: 'w',
                 });
 
