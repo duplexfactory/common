@@ -38,11 +38,10 @@ Array.prototype.chainSort = function <T>(this: Array<T>, compareFn?: (a: T, b: T
 };
 
 Array.prototype.toDict = function <T>(key = "_id") {
-    const dict: Record<string, T> = {};
-    this.forEach(item => {
-        dict[key] = item;
-    });
-    return dict;
+    return this.reduce((dict, item) => ({
+        ...dict,
+        [item[key]]: item
+    }), {} as Record<string, T>);
 };
 
 Array.prototype.unique = function <T>(this: Array<T>) {
