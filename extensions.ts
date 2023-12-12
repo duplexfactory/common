@@ -1,4 +1,4 @@
-import {CredentialData} from "@models/credential-data";
+import {CredentialData} from "./models/credential-data";
 import CryptoJS from "crypto-js";
 
 /**
