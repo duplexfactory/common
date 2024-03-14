@@ -48,3 +48,15 @@ export function isValidUrl(url: string) {
 export function isAlphabetOnly(text: string) {
     return alphabetRegex.test(text);
 }
+
+/**
+ * Share Urls
+ * */
+
+export function facebookShareUrl(targetUrl: string) {
+    return `https://www.facebook.com/share.php?u=${encodeURIComponent(targetUrl)}`;
+}
+
+export function whatsAppUrl(targetUrl: string) {
+    return `https://api.whatsapp.com/send/?text=${encodeURIComponent(targetUrl)}`;
+}
