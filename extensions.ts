@@ -68,22 +68,25 @@ Math.sumObj = function (obj: Record<string, number>) {
  * Storage
  */
 
-if (!Storage.prototype.getCredentialData) {
-    Storage.prototype.getCredentialData = function (credentialKey: string): CredentialData | null {
-        const encryptedCredential = localStorage.getItem("credential");
-        if (encryptedCredential) {
-            const credential = CryptoJS.AES.decrypt(encryptedCredential, credentialKey).toString(CryptoJS.enc.Utf8);
-            return JSON.parse(credential) as CredentialData;
-        }
-        return null;
-    };
-}
+// Only available on clients
+if (!!window) {
+    if (!Storage.prototype.getCredentialData) {
+        Storage.prototype.getCredentialData = function (credentialKey: string): CredentialData | null {
+            const encryptedCredential = localStorage.getItem("credential");
+            if (encryptedCredential) {
+                const credential = CryptoJS.AES.decrypt(encryptedCredential, credentialKey).toString(CryptoJS.enc.Utf8);
+                return JSON.parse(credential) as CredentialData;
+            }
+            return null;
+        };
+    }
 
-if (!Storage.prototype.setCredentialData) {
-    Storage.prototype.setCredentialData = function (credentialKey: string, data: CredentialData) {
-        const credentialString = JSON.stringify(data);
-        localStorage.setItem("credential", CryptoJS.AES.encrypt(credentialString, credentialKey).toString());
-    };
+    if (!Storage.prototype.setCredentialData) {
+        Storage.prototype.setCredentialData = function (credentialKey: string, data: CredentialData) {
+            const credentialString = JSON.stringify(data);
+            localStorage.setItem("credential", CryptoJS.AES.encrypt(credentialString, credentialKey).toString());
+        };
+    }
 }
 
 /**
