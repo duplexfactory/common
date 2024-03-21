@@ -37,11 +37,11 @@ Array.prototype.chainSort = function <T>(this: Array<T>, compareFn?: (a: T, b: T
     return this;
 };
 
-Array.prototype.toDict = function <T>(key = "_id") {
-    return this.reduce((dict, item) => ({
-        ...dict,
-        [item[key]]: item
-    }), {} as Record<string, T>);
+Array.prototype.toDict = function <T extends object>(this: Array<T>, key: keyof T | string = "_id"): Record<string, T> {
+    return this.reduce((dict, item) => Object.assign(
+        dict,
+        { [item[key as keyof T] as string]: item }
+    ), {} as Record<string, T>);
 };
 
 Array.prototype.unique = function <T>(this: Array<T>) {
