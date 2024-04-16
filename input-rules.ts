@@ -46,8 +46,11 @@ export class Form<T> {
     validateFields(fields: (keyof T)[]) {
         const errors = fields.reduce((errors, field) => {
             const v = this.rules[field];
-            if (!isEmpty(v))
-                errors[field] = chainRules(v, this.values[field]);
+            if (!isEmpty(v)) {
+                const e = chainRules(v, this.values[field]);
+                if (e !== true)
+                    errors[field] = e;
+            }
             return errors;
         }, {} as Partial<{ [P in keyof T]: true | string }>);
         // for (const field of fields) {
