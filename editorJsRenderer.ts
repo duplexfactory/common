@@ -21,7 +21,8 @@ export function renderBlock(block: Block): BlockRenderData {
             return {
                 id: block.id,
                 tag: "p",
-                content: block.data.text
+                content: block.data.text,
+                htmlContent: true
             };
         case "image":
             const classes: string[] = [];
