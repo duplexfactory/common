@@ -27,6 +27,11 @@ export const urlRegex = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
     '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
 
+export const urlPathRegex = new RegExp(
+  '^(\\/[-a-z\\d%_.~+]*)*'+ // validate path
+  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+  '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+
 export const alphabetRegex = /[a-zA-Z]/;
 
 /**
@@ -41,9 +46,14 @@ export function isValidPhone(phone: string) {
     return phoneRegex.test(phone);
 }
 
-export function isValidUrl(url: string) {
+export function isValidUrl(urlPath: string) {
+    return urlPathRegex.test(urlPath);
+}
+
+export function isValidUrlPath(url: string) {
     return urlRegex.test(url);
 }
+
 
 export function isAlphabetOnly(text: string) {
     return alphabetRegex.test(text);
